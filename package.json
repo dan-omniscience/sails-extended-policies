@@ -1,7 +1,7 @@
 {
     "name": "sails-extended-policies",
     "description": "Module for sails.js for control policies inside controllers or models",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "./lib/sails-extended-policies",
     "author": {
         "name": "Sajjad Servatjoo",
@@ -24,5 +24,5 @@
         "url": "http://github.com/sajjad-ser/sails-extended-policies/issues"
     },
     "readmeFilename": "Readme.md",
-    "homepage": "http://github.com/sajjad-ser/sails-extended-policies",
+    "homepage": "http://github.com/sajjad-ser/sails-extended-policies"
 }
