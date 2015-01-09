@@ -7,13 +7,13 @@ Module for sails.js for control policies inside controllers or models
 
 ### Policy file
 
-file:api/policies/test.js
+file:api/policies/extendedPolicies.js
 ```javascript
 // A user may only have a single pet
 var ep = require('sails-extended-policies');
 
 module.exports = function(req, res, next) {
-  return ep.check(req, 'needAuth', function() {
+  return ep.check(req, res, 'needAuth', function() {
           // User is allowed, proceed to the next policy, 
           // or if this is the last policy, the controller
           if (req.session.authenticated) {
@@ -33,10 +33,15 @@ file:api/controllers/TestController.js
 ```javascript
 module.exports = {
         needAuth:true, // execute policy for all actions of this controller
-	/*
+	    /*
+	    //It support the policies from the user policies directory
+	    needAuth: 'isAdmin',
+	    
         // for action based policies you can use this
+        //It support the policies from the user policies directory
         needAuth:{
-           yourAction: true // execute policy on this action
+           yourAction: true, // execute policy on this action
+           yourOtherAction: 'isAdmin'
         }
         */
 };
@@ -51,7 +56,15 @@ module.exports = {
     attributes: {
     },
     meta: {
-        needAuth: true
+        needAuth: true, // execute policy for all actions of this controller
+        /*
+        // for action based policies you can use this
+        //It support the policies from the user policies directory
+        needAuth:{
+           yourAction: true, // execute policy on this action
+           yourOtherAction: 'isAdmin'
+        }
+        */
     }
 };
 ```
@@ -65,6 +78,6 @@ file: config/policies.js
 module.exports.policies = {
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': 'test'
+  '*': 'extendedPolicies'
 };
 ```
